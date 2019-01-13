@@ -1,0 +1,33 @@
+{% if latest_item_list %}
+<ul>
+	{% for item in latest_item_list %}
+	<li><a href="/spareparts/{{ item.id }}/">{{ item.name }}</a></li>
+	{% endfor %}
+</ul>
+{% else %}
+<p>No items are available.</p>
+{% endif %}
+
+{% block content %}
+{% if user.is_authenticated %}
+Hi {{ user.username }}!
+<p><a href="{% url 'logout' %}">logout</a></p>
+{% else %}
+<form action="/spareparts/{{item.id}}"  method=post>
+	{%csrf_token%}
+	<label for="Login">Login: </label>
+	<input id="Login" type="text" name="username" placeholder="Username" />
+	<p></p>
+	<label for="email">E-mail address: </label>
+	<input type="text" name="email" placeholder="E-mail" />
+	<p></p>
+	<label for="password">Password: </label>
+	<input type="password" name="password" placeholder="Password" />
+	<p></p>
+	<label for="password2">Retype password: </label>
+	<input type="password" name="password2" placeholder="Retype password" />
+	<p></p>
+	<input type="submit" name="signup_submit" value="Sign me up" />
+</form>
+{%endif%}
+{%endblock%}
