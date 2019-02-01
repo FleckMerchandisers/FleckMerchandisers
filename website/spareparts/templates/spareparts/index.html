@@ -13,6 +13,7 @@
 Hi {{ user.username }}!
 <p><a href="{% url 'logout' %}">logout</a></p>
 {% else %}
+<h2> Sign Up Here </h2>
 <form action="/spareparts/{{item.id}}"  method=post>
 	{%csrf_token%}
 	<label for="Login">Login: </label>
@@ -29,5 +30,7 @@ Hi {{ user.username }}!
 	<p></p>
 	<input type="submit" name="signup_submit" value="Sign me up" />
 </form>
+
+<h3> Or <a href="{% url 'login' %}"> Log in </a> </h3>
 {%endif%}
 {%endblock%}
