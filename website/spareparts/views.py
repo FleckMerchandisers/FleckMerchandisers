@@ -14,14 +14,25 @@ from .models import Item
 
 from django.http import HttpResponse
 
+from django.contrib.auth.forms import UserCreationForm
+
+from .forms import SignUpForm
+
 #def index(request):
 #  return HttpResponse("Hello, you're at the index")
 
 def index(request):
     latest_item_list = Item.objects.order_by('-pub_date')[:5]
     template = loader.get_template('spareparts/index.html')
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = SignUpForm()
     context = {
         'latest_item_list': latest_item_list,
+        'form': form,
     }
     return HttpResponse(template.render(context, request))
 

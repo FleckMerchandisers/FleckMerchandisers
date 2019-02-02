@@ -14,7 +14,7 @@ Hi {{ user.username }}!
 <p><a href="{% url 'logout' %}">logout</a></p>
 {% else %}
 <h2> Sign Up Here </h2>
-<form action="/spareparts/{{item.id}}"  method=post>
+<!--<form action="/spareparts/{{item.id}}"  method=post>
 	{%csrf_token%}
 	<label for="Login">Login: </label>
 	<input id="Login" type="text" name="username" placeholder="Username" />
@@ -29,6 +29,12 @@ Hi {{ user.username }}!
 	<input type="password" name="password2" placeholder="Retype password" />
 	<p></p>
 	<input type="submit" name="signup_submit" value="Sign me up" />
+	</form>--!>
+
+<form method="post">
+	{% csrf_token %}
+	{{ form.as_p }}
+    	<button type="submit">Sign up</button>
 </form>
 
 <h3> Or <a href="{% url 'login' %}"> Log in </a> </h3>
