@@ -23,7 +23,7 @@ from .forms import SignUpForm
 
 def index(request):
     latest_item_list = Item.objects.order_by('-pub_date')[:5]
-    template = loader.get_template('spareparts/index.html')
+    template = loader.get_template('spareparts/HomePage.html')
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
