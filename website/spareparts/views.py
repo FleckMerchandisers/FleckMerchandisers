@@ -51,3 +51,53 @@ def login_view(request):
     context={}
     template = loader.get_template('spareparts/login.html')
     return HttpResponse(template.render(context, request))
+
+def collection(request):
+    context={}
+    template=loader.get_template('spareparts/Collection.html')
+    return HttpResponse(template.render(context,request))
+
+def contact(request):
+    context={}
+    template = loader.get_template('spareparts/Contact.html')
+    return HttpResponse(template.render(context, request))
+
+def cart(request):
+    context={}
+    template = loader.get_template('spareparts/Cart.html')
+    return HttpResponse(template.render(context, request))
+
+def about(request):
+    context={}
+    template = loader.get_template('spareparts/About.html')
+    return HttpResponse(template.render(context, request))
+
+def payment(request):
+    context={}
+    template = loader.get_template('spareparts/Payment.html')
+    return HttpResponse(template.render(context, request))
+
+def signin(request):
+    context={}
+    template = loader.get_template('spareparts/Signin.html')
+    return HttpResponse(template.render(context, request))
+
+def createItem(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = SignUpForm()
+    context={
+            'form': form,
+            }
+    template = loader.get_template('spareparts/Detail.html')
+
+
+
+
+
+
+
+

@@ -1,6 +1,55 @@
-<h2>Login</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Login</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sign in</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/static/PRI.css">
+</head>
+
+<body>
+    <header class="nav_main">
+        <div class="logo_main">
+            <img src="/static/Logo.png" alt="Logo">
+        </div>
+        <div class="head_main">
+            <h1> FleckMerchandise </h1>
+            <div style="clear:both"></div>
+        </div>
+        <nav class="nav_main">
+            <ul>
+                <li><a href="/spareparts/"> Home </a></li>
+                <li><a href="/spareparts/Collection"> Collection </a></li>
+                <li><a href="/spareparts/About"> About </a></li>
+                <li><a href="/spareparts/Contact"> Contact </a></li>
+                <li><a href="/spareparts/Cart"> Cart </a></li>
+                <li><a href="/login/">Sign in</a></li>
+
+            </ul>
+        </nav>
+    </header>
+    <Section>
+
+            <h2>Sign in</h2>
+
+            <div class="container-signin">
+		{% block content %}
+		{% if user.is_authenticated %}
+			Hi {{ user.username }}!
+			<p><a href="{% url 'logout' %}">logout</a></p>
+		{% else %}
+
+			<form method="post">
+			{% csrf_token %}
+			{{ form.as_p}}
+			<button type="submit"> Login </button>
+			</form>
+		{%endif%}
+		{%endblock%}
+            </div>
+        </form>
+    </Section>
+</body>
+
+</html>
