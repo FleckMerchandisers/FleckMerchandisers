@@ -34,23 +34,33 @@
     <main class="collection-container">
         <section>
             <div class="product-search-wrap">
-                <input type="text" name="" id="txt-prod-search" placeholder="Enter the product to search" />
+		    {%if search %}
+		<form type="get" action="." style="margin: 0">
+    		<input  id="search_box" type="text" name="search_box"  placeholder="Search..." >
+    		<button id="search_submit" type="submit" >Search</button>
+		</form>
+		     {%endif%}
+		<!--    <input type="text" name="" id="txt-prod-search" placeholder="Enter the product to search" />--!>
             </div>
             <div class="product-grid product-grid--flexbox">
                 <div class="product-grid__wrapper">
                     <!-- Product list start here -->
-
+		    {% if item_list %}
+		    <ul>
+			{% for item in item_list %}
+			{% if item.name in search_terms or search_terms in item.name %}	
+			<li>
                     <!-- Single product -->
                     <div class="product-grid__product-wrapper">
                         <div class="product-grid__product">
                             <div class="product-grid__img-wrapper">
-                                <img src="Images/Item1.PNG" alt="Img" class="product-grid__img" />
+				    <img src={{MEDIA_URL}}{{item.photoi.url}} alt="Img" class="product-grid__img" />
                             </div>
-                            <span class="product-grid__title">Product title</span>
-                            <span class="product-grid__price">1.399€</span>
+			    <span class="product-grid__title">{{item.name}}</span>
+			    <span class="product-grid__price">{{item.price}}€</span>
                             <div class="product-grid__extend-wrapper">
                                 <div class="product-grid__extend">
-                                    <p class="product-grid__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis velit itaque odit.</p>
+					<p class="product-grid__description">{{item.description}}</p>
                                     <span class="product-grid__btn product-grid__add-to-cart"><i class="fa fa-cart-arrow-down"></i> Add to cart</span>
                                     <span class="product-grid__btn product-grid__view"><i class="fa fa-eye"></i> View more</span>
                                 </div>
@@ -58,143 +68,12 @@
                         </div>
                     </div>
                     <!-- end Single product -->
-
-                    <div class="product-grid__product-wrapper">
-                        <div class="product-grid__product">
-                            <div class="product-grid__img-wrapper">
-                                <img src="Images/item2.PNG" alt="Img" class="product-grid__img" />
-                            </div>
-                            <span class="product-grid__title">Product title</span>
-                            <span class="product-grid__price">1.399€</span>
-                            <div class="product-grid__extend-wrapper">
-                                <div class="product-grid__extend">
-                                    <p class="product-grid__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis velit itaque odit.</p>
-                                    <span class="product-grid__btn product-grid__add-to-cart"><i class="fa fa-cart-arrow-down"></i> Add to cart</span>
-                                    <span class="product-grid__btn product-grid__view"><i class="fa fa-eye"></i> View more</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-grid__product-wrapper">
-                        <div class="product-grid__product">
-                            <div class="product-grid__img-wrapper">
-                                <img src="Images/Item3.jpg" alt="Img" class="product-grid__img" />
-                            </div>
-                            <span class="product-grid__title">Product title</span>
-                            <span class="product-grid__price">1.399€</span>
-                            <div class="product-grid__extend-wrapper">
-                                <div class="product-grid__extend">
-                                    <p class="product-grid__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis velit itaque odit.</p>
-                                    <span class="product-grid__btn product-grid__add-to-cart"><i class="fa fa-cart-arrow-down"></i> Add to cart</span>
-                                    <span class="product-grid__btn product-grid__view"><i class="fa fa-eye"></i> View more</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-grid__product-wrapper">
-                        <div class="product-grid__product">
-                            <div class="product-grid__img-wrapper">
-                                <img src="Images/Item7.jpg" alt="Img" class="product-grid__img" />
-                            </div>
-                            <span class="product-grid__title">Product title</span>
-                            <span class="product-grid__price">1.399€</span>
-                            <div class="product-grid__extend-wrapper">
-                                <div class="product-grid__extend">
-                                    <p class="product-grid__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis velit itaque odit.</p>
-                                    <span class="product-grid__btn product-grid__add-to-cart"><i class="fa fa-cart-arrow-down"></i> Add to cart</span>
-                                    <span class="product-grid__btn product-grid__view"><i class="fa fa-eye"></i> View more</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-grid__product-wrapper">
-                        <div class="product-grid__product">
-                            <div class="product-grid__img-wrapper">
-                                <img src="Images/Item8.jpg" alt="Img" class="product-grid__img" />
-                            </div>
-                            <span class="product-grid__title">Product title</span>
-                            <span class="product-grid__price">1.399€</span>
-                            <div class="product-grid__extend-wrapper">
-                                <div class="product-grid__extend">
-                                    <p class="product-grid__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis velit itaque odit.</p>
-                                    <span class="product-grid__btn product-grid__add-to-cart"><i class="fa fa-cart-arrow-down"></i> Add to cart</span>
-                                    <span class="product-grid__btn product-grid__view"><i class="fa fa-eye"></i> View more</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-grid__product-wrapper">
-                        <div class="product-grid__product">
-                            <div class="product-grid__img-wrapper">
-                                <img src="Images/Item9.jpg" alt="Img" class="product-grid__img" />
-                            </div>
-                            <span class="product-grid__title">Product title</span>
-                            <span class="product-grid__price">1.399€</span>
-                            <div class="product-grid__extend-wrapper">
-                                <div class="product-grid__extend">
-                                    <p class="product-grid__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis velit itaque odit.</p>
-                                    <span class="product-grid__btn product-grid__add-to-cart"><i class="fa fa-cart-arrow-down"></i> Add to cart</span>
-                                    <span class="product-grid__btn product-grid__view"><i class="fa fa-eye"></i> View more</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-grid__product-wrapper">
-                        <div class="product-grid__product">
-                            <div class="product-grid__img-wrapper">
-                                <img src="Images/Item10.jpg" alt="Img" class="product-grid__img" />
-                            </div>
-                            <span class="product-grid__title">Product title</span>
-                            <span class="product-grid__price">1.399€</span>
-                            <div class="product-grid__extend-wrapper">
-                                <div class="product-grid__extend">
-                                    <p class="product-grid__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis velit itaque odit.</p>
-                                    <span class="product-grid__btn product-grid__add-to-cart"><i class="fa fa-cart-arrow-down"></i> Add to cart</span>
-                                    <span class="product-grid__btn product-grid__view"><i class="fa fa-eye"></i> View more</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-grid__product-wrapper">
-                        <div class="product-grid__product">
-                            <div class="product-grid__img-wrapper">
-                                <img src="Images/Item11.jpg" alt="Img" class="product-grid__img" />
-                            </div>
-                            <span class="product-grid__title">Product title</span>
-                            <span class="product-grid__price">1.399€</span>
-                            <div class="product-grid__extend-wrapper">
-                                <div class="product-grid__extend">
-                                    <p class="product-grid__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis velit itaque odit.</p>
-                                    <span class="product-grid__btn product-grid__add-to-cart"><i class="fa fa-cart-arrow-down"></i> Add to cart</span>
-                                    <span class="product-grid__btn product-grid__view"><i class="fa fa-eye"></i> View more</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-grid__product-wrapper">
-                        <div class="product-grid__product">
-                            <div class="product-grid__img-wrapper">
-                                <img src="Images/Item12.jpg" alt="Img" class="product-grid__img" />
-                            </div>
-                            <span class="product-grid__title">Product title</span>
-                            <span class="product-grid__price">1.399€</span>
-                            <div class="product-grid__extend-wrapper">
-                                <div class="product-grid__extend">
-                                    <p class="product-grid__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis velit itaque odit.</p>
-                                    <span class="product-grid__btn product-grid__add-to-cart"><i class="fa fa-cart-arrow-down"></i> Add to cart</span>
-                                    <span class="product-grid__btn product-grid__view"><i class="fa fa-eye"></i> View more</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+			</li>
+			{%endif%}
+			{% endfor %}
+			{% else %}
+			<h4> No products available </h4>
+			{% endif %}
             </div>
 
         </section>
