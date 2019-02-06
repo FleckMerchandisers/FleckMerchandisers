@@ -16,10 +16,9 @@ from django.http import HttpResponse
 
 from django.contrib.auth.forms import UserCreationForm
 
-from .forms import SignUpForm
+from .forms import SignUpForm, ItemCreationForm
 
-#def index(request):
-#  return HttpResponse("Hello, you're at the index")
+
 
 def index(request):
     latest_item_list = Item.objects.order_by('-pub_date')[:5]
@@ -37,6 +36,12 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 def detail(request, item_id):
+    if request.method == 'POST':
+        form = ItemCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = ItemCreationForm()
     context = {
         'item_id' : Item.objects.get(item_id)
     }
@@ -84,15 +89,17 @@ def signin(request):
 
 def createItem(request):
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
+        form = ItemCreationForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            instance = Item(photo=request.FILES['photo'], owner=request.user)
+            instance.save()
     else:
-        form = SignUpForm()
+        form = ItemCreationForm()
     context={
             'form': form,
             }
-    template = loader.get_template('spareparts/Detail.html')
+    template = loader.get_template('spareparts/CreateItem.html')
+    return HttpResponse(template.render(context, request))
 
 
 

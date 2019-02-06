@@ -12,4 +12,5 @@ urlpatterns = [
   url(r'^About/$', views.about, name='about'),
   url(r'^Payment/$', views.payment, name='payment'),
   url(r'^Signin/$', views.signin, name='signin'),
+  url(r'^Create/$', views.createItem, name='create'),
 ]

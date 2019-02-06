@@ -30,26 +30,17 @@
             </ul>
         </nav>
     </header>
-    <main>
-        <section>
-            <h1>FleckMerchandise</h1>
-            <h2>Right Parts at Best Price</h2>
-            <h3>Quality Used Auto Parts</h3>
-        </section>
-        <aside>
-            <form id="contact_form">
-                <div><input type="text" id="name" placeholder="Name"></div>
-                <div><input type="number" id="number" placeholder="Phone"></div>
-                <div><input type="email" id="email" placeholder="Email address"></div>
-                <div><textarea id="textarea" cols="22" rows="6" placeholder="Message"></textarea></div>
-                <div><button>contact us</button></div>
-            </form>
-        </aside>
 
-
-
-    </main>
-
+    {% if not user.is_authenticated %}
+	<h4> Please log in <a href="/login/">here </a> </h4>
+    {% else %}
+    <!-- New div for item creation form here --!>
+	    <form method="post">
+	    {% csrf_token %}
+	    {{ form.as_p }}
+	    <button type="submit"> Create Item </button>
+	    </form>
+    {%endif%}
 </body>
 
 </html>
