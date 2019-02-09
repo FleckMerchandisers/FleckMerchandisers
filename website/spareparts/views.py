@@ -59,21 +59,22 @@ def login_view(request):
     return HttpResponse(template.render(context, request))
 
 def collection(request):
-    item_list = Item.objects.order_by('-pub_date')[:100]
+    template=loader.get_template('spareparts/Collection.html')
+    #if request.method == 'POST':
+    #    print(request.GET)
+    #    text = request.GET.get('search_box', '')
+    #    item_list = Item.objects.order_by('-pub_date')
+    #    context={'search_terms' : text.split(),
+    #             'search':False,
+    #             'item_list':item_list}
+    #    return HttpResponse(template.render(context,request))
+    
+    item_list = Item.objects.order_by('-pub_date')
+    print(item_list)
     context={
             'item_list': item_list,
             'search' :True
             }
-    template=loader.get_template('spareparts/Collection.html')
-    return HttpResponse(template.render(context,request))
-
-def search_list_view(request):
-    text = request.GET.get('search_box', None)
-    item_list = Item.objects.order_by('-pub_date')[:100]
-    context={'search_terms' : text.split()[0],
-             'search':False,
-             'item_list':item_list}
-    template=loader.get_template('spareparts/Collection.html')
     return HttpResponse(template.render(context,request))
 
 
@@ -106,8 +107,10 @@ def createItem(request):
     if request.method == 'POST':
         form = ItemCreationForm(request.POST, request.FILES)
         if form.is_valid():
-            instance = Item(photo=request.FILES, owner=request.user)
-            instance.save()
+            new = form.save(commit=False)
+            new.photo = request.FILES.get('photo', None)
+            new.owner = request.user
+            new.save()
     else:
         form = ItemCreationForm()
     context={
@@ -115,11 +118,3 @@ def createItem(request):
             }
     template = loader.get_template('spareparts/CreateItem.html')
     return HttpResponse(template.render(context, request))
-
-
-
-
-
-
-
-

@@ -16,4 +16,4 @@ class SignUpForm(UserCreationForm):
 class ItemCreationForm(ModelForm):
     class Meta:
         model = Item
-        fields = ('name', 'item_type', 'price', 'photo')
+        fields = ('name', 'item_type', 'price', 'photo', 'description')

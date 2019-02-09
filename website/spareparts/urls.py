@@ -13,5 +13,4 @@ urlpatterns = [
   url(r'^Payment/$', views.payment, name='payment'),
   url(r'^Signin/$', views.signin, name='signin'),
   url(r'^Create/$', views.createItem, name='create'),
-  url(r'^Results/$', views.search_list_view, name='search_list_view')
 ]

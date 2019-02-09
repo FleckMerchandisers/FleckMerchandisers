@@ -25,7 +25,7 @@ class Item(models.Model):
   item_type = models.CharField(max_length=200, choices=TYPE_CHOICES, default='Other')
   price = models.PositiveIntegerField(default=0)
   pub_date = models.DateTimeField(default=django.utils.timezone.now)
-  photo = models.ImageField(upload_to='images', default=None, null=True, blank=True)
+  photo = models.ImageField(upload_to='images', default="/static/Logo.png", null=True, blank=True)
   owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
   description = models.CharField(max_length=10000, default="")
 
