@@ -60,16 +60,19 @@ def login_view(request):
 
 def collection(request):
     template=loader.get_template('spareparts/Collection.html')
-    #if request.method == 'POST':
-    #    print(request.GET)
-    #    text = request.GET.get('search_box', '')
-    #    item_list = Item.objects.order_by('-pub_date')
-    #    context={'search_terms' : text.split(),
-    #             'search':False,
-    #             'item_list':item_list}
-    #    return HttpResponse(template.render(context,request))
-    
     item_list = Item.objects.order_by('-pub_date')
+    if request.method == 'GET' and request.GET != {}:
+        print(request.GET)
+        text = request.GET.get('search_box', '')
+        final_list=[]
+        for i in item_list:
+            for term in text.split():
+                if i.name in term or term in i.name or term in i.description:
+                    final_list.append(i)
+        context={'search':False,
+                 'item_list':final_list}
+        return HttpResponse(template.render(context,request))
+    
     print(item_list)
     context={
             'item_list': item_list,
