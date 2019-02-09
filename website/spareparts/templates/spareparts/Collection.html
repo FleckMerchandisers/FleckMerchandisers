@@ -46,15 +46,12 @@
                 <div class="product-grid__wrapper">
                     <!-- Product list start here -->
 		    {% if item_list %}
-		    <ul>
 			{% for item in item_list %}
-			{% if item.name in search_terms or search_terms in item.name %}	
-			<li>
                     <!-- Single product -->
                     <div class="product-grid__product-wrapper">
                         <div class="product-grid__product">
                             <div class="product-grid__img-wrapper">
-				    <img src={{MEDIA_URL}}{{item.photoi.url}} alt="Img" class="product-grid__img" />
+				    <img src={{item.photo.url}} alt="Img" class="product-grid__img" />
                             </div>
 			    <span class="product-grid__title">{{item.name}}</span>
 			    <span class="product-grid__price">{{item.price}}€</span>
@@ -68,14 +65,13 @@
                         </div>
                     </div>
                     <!-- end Single product -->
-			</li>
-			{%endif%}
 			{% endfor %}
 			{% else %}
-			<h4> No products available </h4>
+			<p> No products available </p>
 			{% endif %}
-            </div>
 
+            </div>
+            </div>
         </section>
         <aside>
 
