@@ -25,7 +25,11 @@
                 <li><a href="/spareparts/Create"> Add an Item </a></li>
                 <li><a href="/spareparts/About"> About </a></li>
                 <li><a href="/spareparts/Contact"> Contact </a></li>
+		{% if user.is_athenticated %}
+		<li><a href="/spareparts/{{user.username}}"> My Account </a></li>
+		{%else%}
                 <li><a href="/login/">Sign in</a></li>
+		{%endif%}
 
             </ul>
         </nav>

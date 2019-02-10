@@ -25,7 +25,6 @@
                 <li><a href="/spareparts/Create"> Add an Item </a></li>
                 <li><a href="/spareparts/About"> About </a></li>
                 <li><a href="/spareparts/Contact"> Contact </a></li>
-                <li><a href="/spareparts/Payment"> Payment </a></li>
 		{% if user.is_athenticated %}
 		<li><a href="/spareparts/{{user.username}}"> My Account </a></li>
 		{%else%}
@@ -35,21 +34,19 @@
             </ul>
         </nav>
     </header>
-    <main class="collection-container">
-        <section>
-            <div class="product-search-wrap">
-		<form type="get" action="." style="margin: 0">
-    		<input  id="search_box" type="text" name="search_box"  placeholder="Search..." >
-    		<button id="search_submit" type="submit" >Search</button>
-		</form>
-            </div>
-            <div class="product-grid product-grid--flexbox">
-                <div class="product-grid__wrapper">
-                    <!-- Product list start here -->
-		    {% if item_list %}
-			{% for item in item_list %}
-                    <!-- Single product -->
-                    <div class="product-grid__product-wrapper">
+    <!-- New div for account display here --!>
+	
+	    <h3> Username : </h3>
+	    <p> {{account_user.username}}</p>
+	    <h3> Contact email : </h3>
+	    <p> {{account_user.email}} </p>
+
+
+	   <!-- Items the user has -->
+	   <h3> {{account_user.username}}'s products : </h3>
+
+	   {% for item in item_list %}
+	   <div class="product-grid__product-wrapper">
                         <div class="product-grid__product">
                             <div class="product-grid__img-wrapper">
 				    <img src="{{item.photo.url}}" alt="Img" class="product-grid__img" />
@@ -65,20 +62,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- end Single product -->
-			{% endfor %}
-			{% else %}
-			<p> No products available </p>
-			{% endif %}
+	 {%endfor%}
 
-            </div>
-            </div>
-        </section>
-        <aside>
-
-        </aside>
-
-    </main>
 
 </body>
 

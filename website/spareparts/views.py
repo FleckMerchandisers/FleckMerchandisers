@@ -20,6 +20,8 @@ from .forms import SignUpForm, ItemCreationForm
 
 from django.db.models import Q
 
+from django.contrib.auth.models import User
+
 
 def index(request):
     latest_item_list = Item.objects.order_by('-pub_date')[:5]
@@ -37,16 +39,10 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 def detail(request, item_id):
-    if request.method == 'POST':
-        form = ItemCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-    else:
-        form = ItemCreationForm()
     context = {
-            'item_id' : Item.objects.get(item_id)
+            'item' : Item.objects.get(pk=item_id)
             }
-    template = loader.get_template('spareparts/detail.html')
+    template = loader.get_template('spareparts/Detail.html')
     return HttpResponse(template.render(context, request))
 
 def logout_view(request):
@@ -121,3 +117,18 @@ def createItem(request):
             }
     template = loader.get_template('spareparts/CreateItem.html')
     return HttpResponse(template.render(context, request))
+
+
+def account(request, user):
+    item_list = Item.objects.order_by("-pub_date")
+    final_list =[]
+    account_user = User.objects.get(username=user)
+    for i in item_list:
+        if i.owner.username == user:
+            final_list.append(i)
+    context={
+            'item_list':final_list,
+            'account_user': account_user,
+            }
+    template = loader.get_template('spareparts/Account.html')
+    return HttpResponse(template.render(context,request))
