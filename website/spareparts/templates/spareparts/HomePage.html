@@ -26,12 +26,11 @@
                 <li><a href="/spareparts/Create"> Add an Item </a></li>
                 <li><a href="/spareparts/About"> About </a></li>
                 <li><a href="/spareparts/Contact"> Contact </a></li>
-		{% if user.is_authenticated %}
-		<li><a href="/spareparts/Account/{{user.username}}"> My Account </a></li>
-		{%else%}
-                <li><a href="/login/">Sign in</a></li>
-		{%endif%}
-
+                {% if user.is_authenticated %}
+                <li><a href="/spareparts/Account/{{user.username}}"> My Account </a></li>
+                {%else%}
+                        <li><a href="/login/">Sign in</a></li>
+                {%endif%}
             </ul>
         </nav>
     </header>
@@ -44,10 +43,33 @@
                     <input type="text" name="email" placeholder="E-mail" />
                     <input type="password" name="password" placeholder="Password" />
                     <input type="password" name="password2" placeholder="Retype password" />
-		    <input type="submit" name="signup_submit" value="Sign up" />--!>
+		    <input type="submit" name="signup_submit" value="Sign up" />-->
 		    <form method="post">
-        	    {% csrf_token %}
-        	    {{ form.as_p }}
+        	    <!-- {% csrf_token %}
+                {{ form.as_p }} -->
+                <ul style="list-style-type:none;">
+                    <label for="username">Username</label>
+                    <li id="username"> 
+                        {% csrf_token %}  
+                        {{ form.username }}
+                    </li>
+                    <label for="email">Email</label>
+                    <li id="email"> 
+                        {% csrf_token %}  
+                        {{ form.email }}
+                    </li>
+                    <label for="password">Password</label>
+                    <li id="password"> 
+                        {% csrf_token %}  
+                        {{ form.password1 }}
+                    </li>
+                    <label for="password">Confirm Password</label>
+
+                    <li id="password2"> 
+                        {% csrf_token %}  
+                        {{ form.password2 }}
+                    </li>
+                </ul>
         	    <button type="submit">Sign up</button>
 		    </form>
                 </div>

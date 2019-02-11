@@ -30,21 +30,18 @@
         </nav>
     </header>
     <Section>
-
-            <h2>Sign in</h2>
-
             <div class="container-signin">
-		{% if user.is_authenticated %}
-		<p>Hi {{ user.username }}!</p>
-			<p><a href="{% url 'logout' %}">logout</a></p>
-		{% else %}
-
-			<form method="post">
-			{% csrf_token %}
-			{{ form.as_p}}
-			<button type="submit"> Login </button>
-			</form>
-		{%endif%}
+                <h2>Sign in</h2>
+                {% if user.is_authenticated %}
+                <p>Hi {{ user.username }}!</p>
+                <p><a href="{% url 'logout' %}">logout</a></p>
+                {% else %}
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p}}
+                    <button type="submit"> Login </button>
+                </form>
+                {%endif%}
             </div>
         </form>
     </Section>
