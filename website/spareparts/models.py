@@ -45,4 +45,4 @@ class ItemOffer(models.Model):
 
 class Cart(models.Model):
     items = models.ManyToManyField(Item)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)

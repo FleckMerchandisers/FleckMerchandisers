@@ -55,6 +55,17 @@ def index(request):
 
 def detail(request, item_id):
     template = loader.get_template('spareparts/Detail.html')
+    if request.method == 'GET':
+        if "add" in request.GET.keys():
+            cart = Cart.objects.filter(owner=request.user)
+            if not len(cart):
+                cart = Cart()
+                cart.save()
+                cart.owner=request.user
+                cart.save()
+            else :
+                cart = cart[0]
+            cart.items.add(Item.objects.get(pk=item_id))
     if request.method == 'POST':
         form = OfferItemForm(request.POST)
         if form.is_valid():
@@ -113,9 +124,9 @@ def about(request):
     return HttpResponse(template.render(context, request))
 
 def payment(request):
-    cart = Cart.objects.filter(owner=request.user)
+    cart = Cart.objects.get(owner=request.user)
     context={
-            'cart':cart,
+            'cart':cart.items.all(),
             }
     template = loader.get_template('spareparts/Payment.html')
     return HttpResponse(template.render(context, request))

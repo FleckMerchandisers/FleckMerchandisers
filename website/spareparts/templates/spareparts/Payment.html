@@ -85,7 +85,7 @@
                                             <th>Price</th>
                                             <th>Manage</th>
                                         </thead>
-					{% for item in cart.items %}
+					{% for item in cart %}
                                         <tr>
                                             <td><input type="checkbox" name="check-product" id="select-produt"></td>
 					    <td class="product-image"><img src="{{item.photo.url}}" width="20" height="20" alt="Product">

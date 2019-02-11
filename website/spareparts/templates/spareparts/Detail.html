@@ -44,6 +44,10 @@
 	    <p> {{item.description}} </p>
 	    <p> See the owner's page : <a href="/spareparts/Account/{{item.owner.username}}"> {{item.owner.username}}  </a> </p>
 
+
+	    <button><a href="/spareparts/detail/{{item.id}}/?add=true"> Add to Cart </a></button>
+
+
 	    <form method="post">
 
 	    {% csrf_token %}
