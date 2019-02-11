@@ -31,7 +31,6 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 
 
-@login_required
 def index(request):
     latest_item_list = Item.objects.order_by('-pub_date')[:5]
     template = loader.get_template('spareparts/HomePage.html')
