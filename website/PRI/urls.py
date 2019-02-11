@@ -25,5 +25,4 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^login/', auth_views.login, name='login'),
 
-    url(r'^oauth/', include('social_django.urls', namespace='social')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

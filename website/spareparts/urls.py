@@ -8,7 +8,6 @@ urlpatterns = [
   url(r'^logout/$',views.logout_view, name='logout'),
   url(r'^Collection/$', views.collection, name='collection'),
   url(r'^Contact/$',views.contact, name='contact'),
-  url(r'^Cart/$', views.cart, name='cart'),
   url(r'^About/$', views.about, name='about'),
   url(r'^Payment/$', views.payment, name='payment'),
   url(r'^Create/$', views.createItem, name='create'),

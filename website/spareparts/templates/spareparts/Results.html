@@ -25,73 +25,64 @@
                 <li><a href="/spareparts/Create"> Add an Item </a></li>
                 <li><a href="/spareparts/About"> About </a></li>
                 <li><a href="/spareparts/Contact"> Contact </a></li>
-		<li><a href="/spareparts/Payment"> Payment </a></li>
-		{% if user.is_authenticated %}
-		<li><a href="/spareparts/{{user.username}}"> My Account </a></li>
-		<li><a href="{% url 'logout' %}"> Logout </a></li>
-		{%else%}
+                <li><a href="/spareparts/Payment"> Payment </a></li>
                 <li><a href="/login/">Sign in</a></li>
-		{%endif%}
 
             </ul>
         </nav>
     </header>
-    <!-- New div for account display here --!>
-	    {% if user.is_authenticated %}
-	
-	    <h3> Username : </h3>
-	    <p> {{account_user.username}}</p>
-	    <h3> Contact email : </h3>
-	    <p> {{account_user.email}} </p>
+    <main class="collection-container">
+        <section>
+            <div class="product-search-wrap">
+		<form id="searchform" action="{% url 'search_list_view' %}" method="get" accept-charset="utf-8">
+		<button class="searchbutton" type="submit">
+        	<i class="fa fa-search"></i>
+      		</button>
+      		<input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
+		</form>
 
-
-	   <!-- Items the user has -->
-	   <h3> {{account_user.username}}'s products : </h3>
-
-	   {% for item in item_list %}
-	   <div class="product-grid__product-wrapper">
+		<!--    <input type="text" name="" id="txt-prod-search" placeholder="Enter the product to search" />--!>
+            </div>
+            <div class="product-grid product-grid--flexbox">
+                <div class="product-grid__wrapper">
+                    <!-- Product list start here -->
+		    {% if item_list %}
+		    <ul>
+			{% for item in item_list %}
+			<li>
+                    <!-- Single product -->
+                    <div class="product-grid__product-wrapper">
                         <div class="product-grid__product">
                             <div class="product-grid__img-wrapper">
-				    <img src="{{item.photo.url}}" alt="Img" class="product-grid__img" />
+				    <img src={{MEDIA_URL}}{{item.photoi.url}} alt="Img" class="product-grid__img" />
                             </div>
 			    <span class="product-grid__title">{{item.name}}</span>
 			    <span class="product-grid__price">{{item.price}}€</span>
                             <div class="product-grid__extend-wrapper">
                                 <div class="product-grid__extend">
 					<p class="product-grid__description">{{item.description}}</p>
-					<!--  <span class="product-grid__btn product-grid__add-to-cart"><i class="fa fa-cart-arrow-down"></i> Add to cart</span> -->
-					<span class="product-grid__btn product-grid__view"><i class="fa fa-eye"></i><a href="/spareparts/detail/{{item.id}}"> View more</a></span>
+                                    <span class="product-grid__btn product-grid__add-to-cart"><i class="fa fa-cart-arrow-down"></i> Add to cart</span>
+                                    <span class="product-grid__btn product-grid__view"><i class="fa fa-eye"></i> View more</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-	 {%endfor%}
+                    <!-- end Single product -->
+			</li>
+			{% endfor %}
+			{% else %}
+			<h4> No products available </h4>
+			{% endif %}
+                </div>
+            </div>
 
-	{% if own%}
-	{% if incoming_messages %}
-	
-	{% for m in incoming_messages %}
+        </section>
+        <aside>
 
-	<!-- Make a div here to make it pretty *** -->
+        </aside>
 
-	<p> From : {{m.sender.username}} </p>
-	<p> To : {{m.dest.username}} </p>
-	<p> Message : {{m.message}} </p>
+    </main>
 
-	{%endfor%}
-
-	{%else%}
-
-	<h3>No incoming message </h3>
-
-	{%endif%}
-	{% endif %}
-
-	 {% else %}
-
-	 <h3> Please <a href="/login/"> log in </a> or <a href="/spareparts"> create an account</a> </h3>
-
-	 {% endif %}
 </body>
 
 </html>

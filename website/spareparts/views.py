@@ -10,7 +10,7 @@ from django.template import loader
 
 from django.contrib.auth import logout
 
-from .models import Item, ItemOffer
+from .models import Item, ItemOffer, Cart
 
 from django.http import HttpResponse
 
@@ -107,18 +107,16 @@ def contact(request):
     template = loader.get_template('spareparts/Contact.html')
     return HttpResponse(template.render(context, request))
 
-def cart(request):
-    context={}
-    template = loader.get_template('spareparts/Cart.html')
-    return HttpResponse(template.render(context, request))
-
 def about(request):
     context={}
     template = loader.get_template('spareparts/About.html')
     return HttpResponse(template.render(context, request))
 
 def payment(request):
-    context={}
+    cart = Cart.objects.filter(owner=request.user)
+    context={
+            'cart':cart,
+            }
     template = loader.get_template('spareparts/Payment.html')
     return HttpResponse(template.render(context, request))
 
