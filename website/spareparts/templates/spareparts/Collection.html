@@ -27,6 +27,7 @@
                 <li><a href="/spareparts/Contact"> Contact </a></li>
 		{% if user.is_authenticated %}
 		<li><a href="/spareparts/Account/{{user.username}}"> My Account </a></li>
+		<li><a href="{% url 'logout' %}"> Logout </a></li>
 		{%else%}
                 <li><a href="/login/">Sign in</a></li>
 		{%endif%}
@@ -51,7 +52,9 @@
                     <div class="product-grid__product-wrapper">
                         <div class="product-grid__product">
                             <div class="product-grid__img-wrapper">
+				    {% if item.photo.url %}
 				    <img src="{{item.photo.url}}" alt="Img" class="product-grid__img" />
+				    {%endif%}
                             </div>
 			    <span class="product-grid__title">{{item.name}}</span>
 			    <span class="product-grid__price">{{item.price}}€</span>
