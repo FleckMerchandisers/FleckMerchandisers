@@ -124,7 +124,12 @@ def about(request):
     return HttpResponse(template.render(context, request))
 
 def payment(request):
-    cart = Cart.objects.get(owner=request.user)
+    cart = Cart.objects.filter(owner=request.user)
+    if not len(cart):
+        cart = Cart()
+        cart.save()
+        cart.owner=request.user
+        cart.save()
     context={
             'cart':cart.items.all(),
             }
