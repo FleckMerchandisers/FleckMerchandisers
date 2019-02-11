@@ -10,7 +10,7 @@ from django.template import loader
 
 from django.contrib.auth import logout
 
-from .models import Item
+from .models import Item, ItemOffer
 
 from django.http import HttpResponse
 
@@ -63,6 +63,7 @@ def detail(request, item_id):
             f.save()
     else :
         form = OfferItemForm()
+
     context = {
             'form': form,
             'item' : Item.objects.get(pk=item_id)
@@ -143,7 +144,18 @@ def account(request, user):
     for i in item_list:
         if i.owner.username == user:
             final_list.append(i)
+    if account_user == request.user:
+        own = True
+        messages = []
+        for i in ItemOffer.objects.order_by('dest'):
+            if i.dest == account_user:
+                messages.append(i)
+    else:
+        own = False
+        messages=[]
     context={
+            'own':own,
+            'incoming_messages':messages,
             'item_list':final_list,
             'account_user': account_user,
             }

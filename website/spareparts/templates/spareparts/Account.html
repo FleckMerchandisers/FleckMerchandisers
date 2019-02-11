@@ -25,7 +25,7 @@
                 <li><a href="/spareparts/Create"> Add an Item </a></li>
                 <li><a href="/spareparts/About"> About </a></li>
                 <li><a href="/spareparts/Contact"> Contact </a></li>
-		{% if user.is_athenticated %}
+		{% if user.is_authenticated %}
 		<li><a href="/spareparts/{{user.username}}"> My Account </a></li>
 		{%else%}
                 <li><a href="/login/">Sign in</a></li>
@@ -35,6 +35,7 @@
         </nav>
     </header>
     <!-- New div for account display here --!>
+	    {% if user.is_authenticated %}
 	
 	    <h3> Username : </h3>
 	    <p> {{account_user.username}}</p>
@@ -64,7 +65,31 @@
                     </div>
 	 {%endfor%}
 
+	{% if own%}
+	{% if incoming_messages %}
+	
+	{% for m in incoming_messages %}
 
+	<!-- Make a div here to make it pretty *** -->
+
+	<p> From : {{m.sender.username}} </p>
+	<p> To : {{m.dest.username}} </p>
+	<p> Message : {{m.message}} </p>
+
+	{%endfor%}
+
+	{%else%}
+
+	<h3>No incoming message </h3>
+
+	{%endif%}
+	{% endif %}
+
+	 {% else %}
+
+	 <h3> Please <a href="/login/"> log in </a> or <a href="/spareparts"> create an account</a> </h3>
+
+	 {% endif %}
 </body>
 
 </html>
