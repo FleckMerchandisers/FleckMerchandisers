@@ -99,6 +99,11 @@
     main h3 {
         font-size: 35px;
     }
+
+    /* Create product - Style */
+
+
+
     /* Products - Styles */
     
     .product-search-wrap {
@@ -673,7 +678,8 @@
     
     input[type="text"],
     input[type="password"],
-    input[type="email"] {
+    input[type="email"], 
+    select {
         display: block;
         box-sizing: border-box;
         margin-bottom: 10px;
