@@ -16,7 +16,7 @@ from django.http import HttpResponse
 
 from django.contrib.auth.forms import UserCreationForm
 
-from .forms import SignUpForm, ItemCreationForm
+from .forms import SignUpForm, ItemCreationForm, OfferItemForm
 
 from django.db.models import Q
 
@@ -52,10 +52,21 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 def detail(request, item_id):
+    template = loader.get_template('spareparts/Detail.html')
+    if request.method == 'POST':
+        form = OfferItemForm(request.POST)
+        if form.is_valid():
+            f = form.save(commit=False)
+            f.sender = request.user
+            f.item = Item.objects.get(pk=item_id)
+            f.dest = Item.objects.get(pk=item_id).owner
+            f.save()
+    else :
+        form = OfferItemForm()
     context = {
+            'form': form,
             'item' : Item.objects.get(pk=item_id)
             }
-    template = loader.get_template('spareparts/Detail.html')
     return HttpResponse(template.render(context, request))
 
 def logout_view(request):
@@ -106,11 +117,6 @@ def about(request):
 def payment(request):
     context={}
     template = loader.get_template('spareparts/Payment.html')
-    return HttpResponse(template.render(context, request))
-
-def signin(request):
-    context={}
-    template = loader.get_template('spareparts/Signin.html')
     return HttpResponse(template.render(context, request))
 
 def createItem(request):

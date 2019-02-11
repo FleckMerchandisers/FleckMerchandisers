@@ -42,6 +42,14 @@
 	    <p> {{item.description}} </p>
 	    <p> {{item.owner.email}} </p>
 
+	    <form method="post">
+
+	    {% csrf_token %}
+	    {{form.as_p}}
+
+	    <button type="submit"> Send request </button>
+	    </form>
+
 </body>
 
 </html>

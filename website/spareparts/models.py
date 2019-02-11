@@ -33,4 +33,11 @@ class Item(models.Model):
     return self.name
 
   def was_published_recently(self):
-        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+        return self.pub_date >= timezone.now() - datetime.timedelta(days=5)
+
+
+class ItemOffer(models.Model):
+    item = models.ForeignKey('Item', on_delete=models.CASCADE, null=True)
+    dest = models.ForeignKey(User, on_delete=models.CASCADE, null=True,related_name='+',)
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, null=True,related_name='+',)
+    message = models.CharField(max_length=10000, default="",blank=True)
