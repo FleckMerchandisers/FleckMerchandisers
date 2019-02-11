@@ -915,4 +915,23 @@
         visibility: visible;
         opacity: 1;
     }
+
+    .item_info {
+        border-width:2px;
+        border-style: solid;
+        border-color:rgb(104, 104, 104);
+        background-color: rgb(104, 104, 104);
+        padding: 20px;
+    }
+
+    .item_image {
+        padding: 20px;
+        margin-left: 20px;
+    }
+
+    .item_desc {
+        padding: 30px;
+        margin-left: 20px;
+    }
+
     /* Tabs CSS end */

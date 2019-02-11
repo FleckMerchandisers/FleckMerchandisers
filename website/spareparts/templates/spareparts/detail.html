@@ -36,27 +36,32 @@
     </header>
 
     <main>
-        <h2 style="text-align: center"> {{item.name}} </h2>
-        <p style="text-align: center"> Price : {{item.price}} € </p>
-        
-        <div class="item_image" style="display:inline-block">
-            <img src="{{item.photo.url}}" style="max-height: 250px;
-            height: 50%;
-            width: auto">
+        <div  class="item_info">
+            <h2 style="text-align: center; padding-bottom: 10px"> {{item.name}} </h2>
+            <p style="text-align: center"> Price : {{item.price}} € </p>
+            
+            <div>
+                <img src="{{item.photo.url}}" class="item_image" style="float: left;" height="300px"  width="auto">
+            
+                <div class="item_desc">
+                    <p> Description : {{item.description}} </p>
+                    <p> See the owner's page : <a href="/spareparts/Account/{{item.owner.username}}"> {{item.owner.username}}  </a> </p>
+                    <p> Owner email : {{item.owner.email}} </p>
+                </div>
+            </div>
+
+            <div style="clear: left;">
+                <form method="post" >
+                    <!-- {% csrf_token %}
+                    {{form.as_p}} -->
+                    <label for="message" style="float: left; padding-bottom: 10px">Message :</label>
+                    {% csrf_token %}
+                    {{ form.message }}
+                    <button type="submit"> Send request </button>
+                </form>
+            </div>
+            
         </div>
-        
-        <div class="item_info" style="display:inline-block">
-            <p> Description : {{item.description}} </p>
-            <p> See the owner's page : <a href="/spareparts/Account/{{item.owner.username}}"> {{item.owner.username}}  </a> </p>
-            <p> Owner email : {{item.owner.email}} </p>
-        </div>
-        
-        <form method="post" >
-            {% csrf_token %}
-            {{form.as_p}}
-    
-            <button type="submit"> Send request </button>
-        </form>
         
     </main>
 
