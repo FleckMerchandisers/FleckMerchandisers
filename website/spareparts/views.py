@@ -130,6 +130,8 @@ def payment(request):
         cart.save()
         cart.owner=request.user
         cart.save()
+    else:
+        cart = cart[0]
     context={
             'cart':cart.items.all(),
             }
