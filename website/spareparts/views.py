@@ -22,6 +22,12 @@ from django.db.models import Q
 
 from django.contrib.auth.models import User
 
+from django.core.mail import send_mail
+
+from django.conf import settings
+
+from django.shortcuts import redirect
+
 
 def index(request):
     latest_item_list = Item.objects.order_by('-pub_date')[:5]
@@ -30,6 +36,13 @@ def index(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
+            send_mail(
+            'Thanks for creating an account !',
+            'Thank you for joining our community, you can now log in and start adding your spareparts for sell !',
+            'Fleckmerchandisers@gmail.com',
+            [form.cleaned_data['email']],
+            fail_silently=False,)
+            return redirect("/login/")
     else:
         form = SignUpForm()
     context = {
@@ -58,7 +71,6 @@ def collection(request):
     template=loader.get_template('spareparts/Collection.html')
     item_list = Item.objects.order_by('-pub_date')
     if request.method == 'GET' and request.GET != {}:
-        print(request.GET)
         text = request.GET.get('search_box', '')
         final_list=[]
         for i in item_list:
@@ -69,7 +81,6 @@ def collection(request):
                  'item_list':final_list}
         return HttpResponse(template.render(context,request))
     
-    print(item_list)
     context={
             'item_list': item_list,
             'search' :True

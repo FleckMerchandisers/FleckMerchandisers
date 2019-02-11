@@ -137,3 +137,12 @@ MEDIA_URL='/media/'
 
 FILE_UPLOAD_HANDLER = ["django.core.files.uploadhandler.MemoryFileUploadHandler",
  "django.core.files.uploadhandler.TemporaryFileUploadHandler"]
+
+#Emails
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'Fleckmerchandisers@gmail.com'
+EMAIL_HOST_PASSWORD = 'Spare@123'
+EMAIL_PORT = 587
