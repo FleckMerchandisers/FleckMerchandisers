@@ -1,1 +1,65 @@
-{{ question }}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome to FleckMerchandise</title>
+    <link rel="stylesheet" href="/static/PRI.css">
+</head>
+
+<body>
+    <header class="nav_main">
+        <div class="logo_main">
+            <img src="/static/Logo.png" alt="Logo">
+        </div>
+        <div class="head_main">
+            <h1> FleckMerchandise </h1>
+            <div style="clear:both"></div>
+        </div>
+        <nav class="nav_main">
+            <ul>
+                <li><a href="/spareparts/"> Home </a></li>
+                <li><a href="/spareparts/Collection"> Collection </a></li>
+                <li><a href="/spareparts/Create"> Add an Item </a></li>
+                <li><a href="/spareparts/About"> About </a></li>
+                <li><a href="/spareparts/Contact"> Contact </a></li>
+		{% if user.is_authenticated %}
+		<li><a href="/spareparts/Account/{{user.username}}"> My Account </a></li>
+		{%else%}
+                <li><a href="/login/">Sign in</a></li>
+		{%endif%}
+
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2 style="text-align: center"> {{item.name}} </h2>
+        <p style="text-align: center"> Price : {{item.price}} € </p>
+        
+        <div class="item_image" style="display:inline-block">
+            <img src="{{item.photo.url}}" style="max-height: 250px;
+            height: 50%;
+            width: auto">
+        </div>
+        
+        <div class="item_info" style="display:inline-block">
+            <p> Description : {{item.description}} </p>
+            <p> See the owner's page : <a href="/spareparts/Account/{{item.owner.username}}"> {{item.owner.username}}  </a> </p>
+            <p> Owner email : {{item.owner.email}} </p>
+        </div>
+        
+        <form method="post" >
+            {% csrf_token %}
+            {{form.as_p}}
+    
+            <button type="submit"> Send request </button>
+        </form>
+        
+    </main>
+
+</body>
+
+</html>

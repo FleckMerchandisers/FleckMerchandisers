@@ -35,16 +35,22 @@
         </nav>
     </header>
 
-    {% if not user.is_authenticated %}
-	<h4> Please log in <a href="/login/">here </a> </h4>
-    {% else %}
-    <!-- New div for item creation form here --!>
-	    <form method="post" enctype="multipart/form-data">
-	    {% csrf_token %}
-	    {{ form.as_p }}
-	    <button type="submit"> Create Item </button>
-	    </form>
-    {%endif%}
+    <main>
+        {% if not user.is_authenticated %}
+        <div class="create_item">
+            <h4> Please log in <a href="/login/">here </a> </h4>
+            {% else %}
+                <!-- New div for item creation form here -->
+            <h4> Create a new product </h4>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit"> Create Item </button>
+            </form>
+            {%endif%}
+        </div>
+    </main>
+    
 </body>
 
 </html>
