@@ -26,13 +26,13 @@
                 <li><a href="/spareparts/Create"> Add an Item </a></li>
                 <li><a href="/spareparts/About"> About </a></li>
                 <li><a href="/spareparts/Contact"> Contact </a></li>
-		{% if user.is_authenticated %}
-		<li><a href="/spareparts/Payment"> Payment </a></li>
-		<li><a href="/spareparts/Account/{{user.username}}"> My Account </a></li>
-		<li><a href="{% url 'logout' %}"> Logout </a></li>
-		{%else%}
+                {% if user.is_authenticated %}
+                <li><a href="/spareparts/Payment"> Payment </a></li>
+                <li><a href="/spareparts/Account/{{user.username}}"> My Account </a></li>
+                <li><a href="{% url 'logout' %}"> Logout </a></li>
+                {%else%}
                 <li><a href="/login/">Sign in</a></li>
-		{%endif%}
+		        {%endif%}
 
 
             </ul>
@@ -58,7 +58,7 @@
     <div class="payment-method-wrap">
         <div class="tabs">
             <ul>
-                <li><a href="#one" class="active"><i class="fas fa-shopping-cart"></i> <span>Products</span></a></li>
+                <li><a href="#one" class="active"><i class="fas fa-shopping-cart"></i> <span>Cart</span></a></li>
                 <li><a href="#two"><i class="fas fa-truck"></i><span>Shipping and Tax</span></a></li>
                 <li><a href="#three"><i class="fas fa-credit-card"></i><span>Payment Methods</span></a></li>
                 <li><a href="#four"><i class="fas fa-percent"></i><span>Coupons</span></a></li>
@@ -117,7 +117,7 @@
                         <p>Order Summary</p>>
                         <div class="product">
                             <div class="product-image">
-                                <img src="Images/Item7.jpg" width="100" height="75" alt="product">
+                                <img src="/static/Images/Item7.jpg" width="100" height="75" alt="product">
                             </div>
                             <div class="product-details">
                                 <h3>Nike</h3>
@@ -127,7 +127,7 @@
                         </div>
                         <div class="product">
                             <div class="product-image">
-                                <img src="Images/Item4.jpg" width="100" height="75" alt="product">
+                                <img src="/static/Images/Item4.jpg" width="100" height="75" alt="product">
                             </div>
                             <div class="product-details">
                                 <h3>Nike</h3>
@@ -137,7 +137,7 @@
                         </div>
                         <div class="product">
                             <div class="product-image">
-                                <img src="Images/Item5.jpg" width="100" height="75" alt="product">
+                                <img src="/static/Images/Item5.jpg" width="100" height="75" alt="product">
                             </div>
                             <div class="product-details">
                                 <h3>Nike</h3>
@@ -175,7 +175,7 @@
                         </div>
                         <!--Crad Image-->
                         <div class="card-image">
-                            <img src="./Images/Visa.jpg" width="200" height="140">
+                            <img src="/static/Images/Visa.jpg" width="200" height="140">
                         </div>
                         <!--card form-->
                         <div class="form">
@@ -264,8 +264,8 @@
     </div>
     </div>
 
-    <script src="js/jquery-2.1.3.min.js"></script>
-    <script src="js/jquery.tabs.min.js"></script>
+    <script src="/static/js/jquery-2.1.3.min.js"></script>
+    <script src="/static/js/jquery.tabs.min.js"></script>
     <script>
         $(document).ready(function() {
             $('.tabs').tabs();
