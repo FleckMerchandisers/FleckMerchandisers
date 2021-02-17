@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome to FleckMerchandise</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link rel="stylesheet" href="/static/PRI.css">
+</head>
+
+<body>
+    <header class="nav_main">
+        <div class="logo_main">
+            <img src="/static/Logo.png" alt="Logo">
+        </div>
+        <div class="head_main">
+            <h1> FleckMerchandise </h1>
+            <div style="clear:both"></div>
+        </div>
+        <nav class="nav_main">
+            <ul>
+                <li><a href="/spareparts/"> Home </a></li>
+                <li><a href="/spareparts/Collection"> Collection </a></li>
+                <li><a href="/spareparts/Create"> Add an Item </a></li>
+                <li><a href="/spareparts/About"> About </a></li>
+                <li><a href="/spareparts/Contact"> Contact </a></li>
+                {% if user.is_authenticated %}
+                <li><a href="/spareparts/Payment"> Payment </a></li>
+                <li><a href="/spareparts/Account/{{user.username}}"> My Account </a></li>
+                <li><a href="{% url 'logout' %}"> Logout </a></li>
+                {%else%}
+                <li><a href="/login/">Sign in</a></li>
+		        {%endif%}
+
+
+            </ul>
+        </nav>
+    </header>
+
+    <main style="display:none">
+        <div>
+            <div></div>
+            <div>Products</div>
+            <div></div>
+            <div>Shipping and Tax</div>
+            <div></div>
+            <div>Payment methods</div>
+            <div></div>
+            <div>Coupons</div>
+            <div></div>
+            <div>Store Settings</div>
+        </div>
+    </main>
+    
+    
+    <div class="payment-method-wrap">
+        <div class="tabs">
+            <ul>
+                <li><a href="#one" class="active"><i class="fas fa-shopping-cart"></i> <span>Cart</span></a></li>
+                <li><a href="#two"><i class="fas fa-truck"></i><span>Shipping and Tax</span></a></li>
+                <li><a href="#three"><i class="fas fa-credit-card"></i><span>Payment Methods</span></a></li>
+                <li><a href="#four"><i class="fas fa-percent"></i><span>Coupons</span></a></li>
+                <li><a href="#five"><i class="fas fa-cog"></i><span>Store Settings</span></a></li>
+            </ul>
+
+            <div id="one" class="tab products-tab">
+                <div class="cart-addprod-wrap">
+                    <!-- Category - Section -->
+                    <div class="cart-sect-wrap">
+                        <div class="cart-products">
+                            <h1>Products</h1>
+                        </div>
+                        <div class="addproduct">
+                            <button><i class="fas fa-plus"></i>Add Product</button>
+                        </div>
+                        <div class="cart-box">
+                            <div class="product-table">
+                                <table>
+                                    <tbody>
+                                        <thead>
+                                            <th></th>
+                                            <th>Title</th>
+                                            <th>Price</th>
+                                            <th>Manage</th>
+                                        </thead>
+					{% for item in cart %}
+                                        <tr>
+                                            <td><input type="checkbox" name="check-product" id="select-produt"></td>
+					    <td class="product-image"><img src="{{item.photo.url}}" width="20" height="20" alt="Product">
+						    <span>{{item.description}}</span>
+                                            </td>
+					    <td>{{item.price}}€</td>
+                                            <td class="manage">
+                                                <button class="edit">Edit<i class="fas fa-pencil-alt"></i></button>
+                                                <button class="delete">Delete<i class="fas fa-trash-alt"></i></button>
+                                                <button class="view">View<i class="fas fa-eye"></i></button>
+                                            </td>
+                                            </span>
+                                        </tr>
+					{% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add Product - Section -->
+                    <div class="add-prod-wrap">
+
+                    </div>
+                </div>
+            </div>
+            <div id="three" class="tab payments-tab">
+                <div class="container">
+                    <div class="order-Summary ">
+                        <p>Order Summary</p>>
+                        <div class="product">
+                            <div class="product-image">
+                                <img src="/static/Images/Item7.jpg" width="100" height="75" alt="product">
+                            </div>
+                            <div class="product-details">
+                                <h3>Nike</h3>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto, corporis!</p>
+                                <p>€199</p>
+                            </div>
+                        </div>
+                        <div class="product">
+                            <div class="product-image">
+                                <img src="/static/Images/Item4.jpg" width="100" height="75" alt="product">
+                            </div>
+                            <div class="product-details">
+                                <h3>Nike</h3>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto, corporis!</p>
+                                <p>€199</p>
+                            </div>
+                        </div>
+                        <div class="product">
+                            <div class="product-image">
+                                <img src="/static/Images/Item5.jpg" width="100" height="75" alt="product">
+                            </div>
+                            <div class="product-details">
+                                <h3>Nike</h3>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto, corporis!</p>
+                                <p>€199</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="total">
+                            <div class="tax-labels">
+                                <p>VAT 19%</p>
+                                <p>Delivery</p>
+                                <p>TOTAL</p>
+                            </div>
+                            <div class="price">
+                                <p>€68.75</p>
+                                <p>€9.45</p>
+                                <p>€435.55</p>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="card-info">
+                        <!--card-select-->
+                        <div class="card-select">
+                            <div>please select Your Card</div>
+                            <div>
+                                <select>
+                                <option value="visa" selected>Visa</option>
+                                <option value="Master-card">Master Card</option>
+                                <option value="American-express">American Express</option>
+                                
+                                </select>
+                            </div>
+                        </div>
+                        <!--Crad Image-->
+                        <div class="card-image">
+                            <img src="/static/Images/Visa.jpg" width="200" height="140">
+                        </div>
+                        <!--card form-->
+                        <div class="form">
+                            <form action="#">
+                                <label for="card-Number">Card Number:</label>
+                                <input type="text" name="card-Number" id="card-Number"><br>
+
+                                <label for="card-HolderName">Card Holder Name:</label>
+                                <input type="text" name="card-HolderName" id="card-HolderName"><br>
+
+                                <label for="Expires">Expires</label> &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+                                <label for="cvv">CVV:</label><br>
+                                <input type="text" name="Expires" id="Expires">
+
+                                <input type="text" name="cvv" id="cvv"><br>
+
+                                <input id="btn-submit" type="submit" value="Check Out"><br>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="two" class="tab shipping-tab">
+                <div class="col-850">
+                    <h3>Billing Address</h3>
+                    <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                    <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
+                    <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                    <input type="text" id="email" name="email" placeholder="john@example.com">
+                    <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                    <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
+                    <label for="city"><i class="fa fa-institution"></i> City</label>
+                    <input type="text" id="city" name="city" placeholder="New York">
+
+                    <div class="row1">
+                        <div class="col-850">
+                            <label for="state">State</label>
+                            <input type="text" id="state" name="state" placeholder="NY">
+                        </div>
+                        <div class="col-850">
+                            <label for="zip">Zip</label>
+                            <input type="text" id="zip" name="zip" placeholder="10001">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-825">
+                    <div class="container">
+                        <h4>Cart
+                            <span class="price" style="color:black">
+                            <i class="fa fa-shopping-cart"></i> 
+                            <b>4</b>
+                        </span>
+                        </h4>
+                        <p><a href="#">Product 1</a> <span class="price">$15</span></p>
+                        <p><a href="#">Product 2</a> <span class="price">$5</span></p>
+                        <p><a href="#">Product 3</a> <span class="price">$8</span></p>
+                        <p><a href="#">Product 4</a> <span class="price">$2</span></p>
+                        <hr>
+                        <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
+                    </div>
+                </div>
+                <div style="clear:both;">&nbsp;</div>
+                <div>
+                    <label>
+                        <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+                        </label>
+                </div>
+
+                <input type="submit" value="Continue to checkout" id="btn-checkout" class="btn">
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    </div>
+    <div id="four" class="tab coupon-tab">
+        <h2>4) Lorem ipsum dolor sit amet.</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe magni, est harum repellendus. Accusantium, nostrum veniam numquam dolores dignissimos culpa quidem ut optio, est quaerat, magnam exercitationem voluptas voluptatem sed!</p>
+    </div>
+    <div id="five" class="tab settings-tab">
+        <h2>5) Lorem ipsum dolor sit amet.</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe magni, est harum repellendus. Accusantium, nostrum veniam numquam dolores dignissimos culpa quidem ut optio, est quaerat, magnam exercitationem voluptas voluptatem sed!</p>
+    </div>
+    <div style="clear:both"></div>
+    </div>
+    </div>
+
+    <script src="/static/js/jquery-2.1.3.min.js"></script>
+    <script src="/static/js/jquery.tabs.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.tabs').tabs();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome to FleckMerchandise</title>
+    <link rel="stylesheet" href="/static/PRI.css">
+</head>
+
+<body>
+    <header class="nav_main">
+        <div class="logo_main">
+            <img src="/static/Logo.png" alt="Logo">
+        </div>
+        <div class="head_main">
+            <h1> FleckMerchandise </h1>
+            <div style="clear:both"></div>
+        </div>
+        <nav class="nav_main">
+            <ul>
+                <li><a href="/spareparts/"> Home </a></li>
+                <li><a href="/spareparts/Collection"> Collection </a></li>
+                <li><a href="/spareparts/Create"> Add an Item </a></li>
+                <li><a href="/spareparts/About"> About </a></li>
+                <li><a href="/spareparts/Contact"> Contact </a></li>
+                {% if user.is_authenticated %}
+		        <li><a href="/spareparts/Payment"> Payment </a></li>
+                <li><a href="/spareparts/Account/{{user.username}}"> My Account </a></li>
+                <li><a href="{% url 'logout' %}"> Logout </a></li>
+                {%else%}
+                <li><a href="/login/">Sign in</a></li>
+                {%endif%}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <Section>
+            <div id="login-box">
+                <div class="left">
+                    <h1>Sign up</h1>
+                   <!-- <input type="text" name="username" placeholder="Username" />
+                    <input type="text" name="email" placeholder="E-mail" />
+                    <input type="password" name="password" placeholder="Password" />
+                    <input type="password" name="password2" placeholder="Retype password" />
+		            <input type="submit" name="signup_submit" value="Sign up" />-->
+                    <form method="post">
+                        <!-- {% csrf_token %}
+                        {{ form.as_p }} -->
+                        <ul style="list-style-type:none;">
+                            <label for="username">Username</label>
+                            <li id="username"> 
+                                {% csrf_token %}  
+                                {{ form.username }}
+                            </li>
+                            <label for="email">Email</label>
+                            <li id="email"> 
+                                {% csrf_token %}  
+                                {{ form.email }}
+                            </li>
+                            <label for="password">Password</label>
+                            <li id="password"> 
+                                {% csrf_token %}  
+                                {{ form.password1 }}
+                            </li>
+                            <label for="password">Confirm Password</label>
+
+                            <li id="password2"> 
+                                {% csrf_token %}  
+                                {{ form.password2 }}
+                            </li>
+                        </ul>
+                        <button type="submit">Sign up</button>
+                    </form>
+                </div>
+
+                <div class="right">
+                    <span class="loginwith">Sign in with<br />social network</span>
+
+                    <button class="social-signin facebook">Log in with facebook</button>
+                    <button class="social-signin twitter">Login with Twitter</button>
+                    <button class="social-signin google">Log in with Google+</button>
+                </div>
+            </div>
+        </Section>
+    </main>
+
+</body>
+
+</html>

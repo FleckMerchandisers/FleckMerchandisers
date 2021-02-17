@@ -1,0 +1,26 @@
+==== Start the server ====
+
+To start the serveur :
+
+  $python manage.py runserver
+
+Then open it in your browser at : http://127.0.0.1:8000/
+
+
+==== Database modifications ====
+
+Credentials : evania / evania
+
+In case of modification of the spareparts/models.py :
+  $python manage.py makemigrations spareparts
+  $python manage.py migrate
+
+
+==== Admin connection ====
+
+email : Fleckmerchandisers@gmail.com
+
+url: http://127.0.0.1:8000/admin
+
+username : evania
+password : Spare@123

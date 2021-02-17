@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sign in</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/static/PRI.css">
+</head>
+
+<body>
+    <header class="nav_main">
+        <div class="logo_main">
+            <img src="/static/Logo.png" alt="Logo">
+        </div>
+        <div class="head_main">
+            <h1> FleckMerchandise </h1>
+            <div style="clear:both"></div>
+        </div>
+        <nav class="nav_main">
+            <ul>
+                <li><a href="/spareparts/"> Home </a></li>
+                <li><a href="/spareparts/Collection"> Collection </a></li>
+                <li><a href="/spareparts/About"> About </a></li>
+                <li><a href="/spareparts/Contact"> Contact </a></li>
+		        {% if user.is_authenticated %}
+                <li><a href="/spareparts/Payment"> Payment </a></li>
+                <li><a href="/spareparts/Account/{{user.username}}"> My Account </a></li>
+		        <li><a href="{% url 'logout' %}"> Logout </a></li>
+                {%else%}
+                <li><a href="/login/">Sign in</a></li>
+                {%endif%}
+
+
+            </ul>
+        </nav>
+    </header>
+    <Section>
+            <div class="container-signin">
+                <h2>Sign in</h2>
+                {% if user.is_authenticated %}
+                <p>Hi {{ user.username }}!</p>
+                <p><a href="{% url 'logout' %}">logout</a></p>
+                {% else %}
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p}}
+                    <button type="submit"> Login </button>
+                </form>
+                {%endif%}
+            </div>
+        </form>
+    </Section>
+</body>
+
+</html>

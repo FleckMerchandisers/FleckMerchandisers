@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome to FleckMerchandise</title>
+    <link rel="stylesheet" href="/static/PRI.css">
+</head>
+
+<body>
+    <header class="nav_main">
+        <div class="logo_main">
+            <img src="/static/Logo.png" alt="Logo">
+        </div>
+        <div class="head_main">
+            <h1> FleckMerchandise </h1>
+            <div style="clear:both"></div>
+        </div>
+        <nav class="nav_main">
+            <ul>
+                <li><a href="/spareparts/"> Home </a></li>
+                <li><a href="/spareparts/Collection"> Collection </a></li>
+                <li><a href="/spareparts/Create"> Add an Item </a></li>
+                <li><a href="/spareparts/About"> About </a></li>
+                <li><a href="/spareparts/Contact"> Contact </a></li>
+                {% if user.is_authenticated %}
+                <li><a href="/spareparts/Payment"> Payment </a></li>
+                <li><a href="/spareparts/Account/{{user.username}}"> My Account </a></li>
+                <li><a href="{% url 'logout' %}"> Logout </a></li>
+                {%else%}
+                <li><a href="/login/">Sign in</a></li>
+                {%endif%}
+
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% if not user.is_authenticated %}
+        <div class="create_item">
+            <h4> Please log in <a href="/login/">here </a> </h4>
+            {% else %}
+                <!-- New div for item creation form here -->
+            <h4> Create a new product </h4>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit"> Create Item </button>
+            </form>
+            {%endif%}
+        </div>
+    </main>
+    
+</body>
+
+</html>

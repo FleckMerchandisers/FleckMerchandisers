@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome to FleckMerchandise</title>
+    <link rel="stylesheet" href="/static/Products.css">
+</head>
+
+<body>
+    <header class="nav_main">
+        <div class="logo_main">
+            <img src="/static/Logo.png" alt="Logo">
+        </div>
+        <div class="head_main">
+            <h1> FleckMerchandise </h1>
+            <div style="clear:both"></div>
+        </div>
+        <nav class="nav_main">
+            <ul>
+                <li><a href="/spareparts/"> Home </a></li>
+                <li><a href="/spareparts/Collection"> Collection </a></li>
+                <li><a href="/spareparts/Create"> Add an Item </a></li>
+                <li><a href="/spareparts/About"> About </a></li>
+                <li><a href="/spareparts/Contact"> Contact </a></li>
+		{% if user.is_athenticated %}
+		<li><a href="/spareparts/{{user.username}}"> My Account </a></li>
+		{%else%}
+                <li><a href="/login/">Sign in</a></li>
+		{%endif%}
+
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div>
+            <H1>Product</H1>
+        </div>
+        <div>Car</div>
+        <div>
+            <div><img src="Images/Item1.PNG" alt=""></div>
+            <div class="Item-details">Direct-Operated Servo Valves with Fieldbus Interface D636 and D637 Series</div>
+            <div>
+                <h6>To edit this section, go to pages and find your store page, then click edit.</h6>
+            </div>
+            <div>60€</div>
+        </div>
+        <div>
+            <div><img src="Images/Item2.PNG" alt=""></div>
+            <div>Pilot-Operated Servo Value with Fieldbus Interface D670 Series</div>
+            <div>80€</div>
+        </div> -->
+    </main>
+</body>
+
+</html>

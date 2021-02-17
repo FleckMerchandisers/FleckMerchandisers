@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sign in</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="PRI.css">
+</head>
+
+<body>
+    <header class="nav_main">
+        <div class="logo_main">
+            <img src="Logo.png" alt="Logo">
+        </div>
+        <div class="head_main">
+            <h1> FleckMerchandise </h1>
+            <div style="clear:both"></div>
+        </div>
+        <nav class="nav_main">
+            <ul>
+                <li><a href="HomePage.html"> Hoooome </a></li>
+                <li><a href="Collection.html"> Collection </a></li>
+                <li><a href="About.html"> About </a></li>
+                <li><a href="Contact.html"> Contact </a></li>
+                <li><a href="Cart.html"> Cart </a></li>
+                <li><a href="Signin.html">Sign in</a></li>
+
+            </ul>
+        </nav>
+    </header>
+    <Section>
+        <form action="action_page.php" class="signin-Sec">
+
+            <h2>Sign in</h2>
+
+            <div class="container-signin">
+                <label for="uname" class="signin-label"><b>Username</b></label>
+                <input type="text" class="signin-input" placeholder="Enter Username" name="uname" required>
+
+                <label for="psw" class="signin-label"><b>Password</b></label>
+                <input type="password" class="signin-input" placeholder="Enter Password" name="psw" required>
+
+                <button type="submit" class="signinbtn">Sign in</button>
+                <label>
+                <input type="checkbox" class="signin-check" checked="checked" name="remember"> Remember me
+                </label>
+
+                <button type="button" class="cancelbtn">Cancel</button>
+                <span class="psw"><a href="#">Forgot Password</a></span>
+            </div>
+        </form>
+    </Section>
+</body>
+
+</html>
